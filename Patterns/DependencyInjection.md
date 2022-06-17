@@ -159,11 +159,12 @@ namespace Contoso.Gateway
 {
     public static class ContosoGatewayServiceCollectionExtensions
     {
-        public static void AddContosoRepositories(this IServiceCollection services, IConfiguration config) 
+        public static IServiceCollection AddContosoRepositories(this IServiceCollection services, IConfiguration config) 
         {
             services.AddScoped<ISomeGateway, SomeGatewayImpelmentation>();
 			services.AddOptions<SomeGatewayConfiguration>()
 				.Bind(configuration.GetSection(SomeGatewayConfiguration.SectionName));
+            return services;//Chainable!
         }
     }
 }
